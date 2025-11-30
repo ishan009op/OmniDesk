@@ -27,5 +27,5 @@ app.use('/api/bookmark',BookMarkRoutes)
 app.use('/api/finance',FinanceRoutes)
 
 app.listen(port,()=>{
-    console.log(`https://omnidesk-onrender.com`)
+    console.log(`https://omnidesk-backend.onrender.com`)
 })
