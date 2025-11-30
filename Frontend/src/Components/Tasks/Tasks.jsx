@@ -16,7 +16,7 @@ const Tasks = () => {
     const fetchTasks = async () => {
       try {
         setLoading(true)
-        const res = await axios.get('https://omnidesk-onrender.com/api/tasks', {
+        const res = await axios.get('http://localhost:3000/api/tasks', {
           headers: { Authorization: `Bearer ${token}` }
         })
         setData(res.data)
