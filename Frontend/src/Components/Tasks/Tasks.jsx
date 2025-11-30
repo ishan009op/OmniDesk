@@ -11,7 +11,7 @@ const Tasks = () => {
   const token = localStorage.getItem('omniToken')
 
   useEffect(() => {
-    if (!token) return navigate('/login')
+    // if (!token) return navigate('/login')
     
     const fetchTasks = async () => {
       try {
