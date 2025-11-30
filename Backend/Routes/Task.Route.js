@@ -1,6 +1,6 @@
 import express from 'express'
 import authmiddleware from '../middlewares/Auth.middleware.js'
-import { CompleteTask, DeleteTask, EditTask, getSingleTask, getTask, PostTask } from '../Controllers/Task.controller.js'
+import { CompleteTask, DeleteTask, EditTask, getSingleTask, getTask, PostTask } from '../Controllers/Task.Controller.js'
 
 const router =express.Router()
 
