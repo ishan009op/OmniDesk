@@ -14,7 +14,7 @@ const Tasks = () => {
   const fetchTasks = async () => {
     try {
       setLoading(true)
-      const res = await axios.get('http://localhost:3000/api/tasks')
+      const res = await axios.get('https://omnidesk-frontend.onrender.com/api/tasks')
       // Ensure res.data is an array
       if (Array.isArray(res.data)) {
         setData(res.data)
