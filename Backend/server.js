@@ -10,7 +10,7 @@ import cors from 'cors'
 connectDatabase()
 dotenv.config()
 const corsOptions = {
-  origin: 'https://omnidesk-frontend.onrender.com', // Allow only this origin
+  origin: 'http://localhost:5173', // Allow only this origin
   methods: ['GET', 'POST','PUT','PATCH','DELETE'], // Allow only GET and POST requests
   allowedHeaders: ['Content-Type', 'Authorization'], // Allow specific headers
   credentials: true // Allow sending cookies/credentials
@@ -27,5 +27,5 @@ app.use('/api/bookmark',BookMarkRoutes)
 app.use('/api/finance',FinanceRoutes)
 
 app.listen(port,()=>{
-    console.log(`https://omnidesk-backend.onrender.com`)
+    console.log(`http://localhost:${port}`)
 })
