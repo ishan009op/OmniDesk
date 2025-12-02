@@ -7,6 +7,12 @@ import NoteRoutes from './Routes/Notes.Route.js'
 import BookMarkRoutes from './Routes/BookMark.Route.js'
 import FinanceRoutes from './Routes/Finance.Route.js'
 import cors from 'cors'
+import mongoose from 'mongoose'
+
+
+
+
+
 connectDatabase()
 dotenv.config()
 const corsOptions = {
@@ -25,6 +31,22 @@ app.use('/api/tasks',TaskRoutes)
 app.use('/api/notes',NoteRoutes)
 app.use('/api/bookmark',BookMarkRoutes)
 app.use('/api/finance',FinanceRoutes)
+
+
+// app.get("/test-db", async (req, res) => {
+//   try {
+//     if (mongoose.connection.readyState !== 1) {
+//       return res.status(500).send("MongoDB Not Connected");
+//     }
+
+//     const result = await mongoose.connection.db.admin().ping();
+//     res.send("MongoDB Connected Successfully!");
+//   } catch (err) {
+//     console.error("DB Test Error:", err);
+//     res.status(500).send("MongoDB Not Connected");
+//   }
+// });
+
 
 app.listen(port,()=>{
     console.log(`http://localhost:${port}`)
