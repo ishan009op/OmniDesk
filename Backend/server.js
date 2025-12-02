@@ -16,7 +16,7 @@ import mongoose from 'mongoose'
 connectDatabase()
 dotenv.config()
 const corsOptions = {
-  origin: 'http://localhost:5173', // Allow only this origin
+  origin: 'https://omnidesk-frontend.onrender.com', // Allow only this origin
   methods: ['GET', 'POST','PUT','PATCH','DELETE'], // Allow only GET and POST requests
   allowedHeaders: ['Content-Type', 'Authorization'], // Allow specific headers
   credentials: true // Allow sending cookies/credentials
