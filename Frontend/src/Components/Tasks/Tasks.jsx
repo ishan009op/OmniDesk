@@ -11,24 +11,28 @@ const Tasks = () => {
   const token = localStorage.getItem('omniToken')
 
   useEffect(() => {
-    // if (!token) return navigate('/login')
-    
-    const fetchTasks = async () => {
-      try {
-        setLoading(true)
-        const res = await axios.get('http://localhost:3000/api/tasks', {
-          headers: { Authorization: `Bearer ${token}` }
-        })
+  const fetchTasks = async () => {
+    try {
+      setLoading(true)
+      const res = await axios.get('http://localhost:3000/api/tasks')
+      // Ensure res.data is an array
+      if (Array.isArray(res.data)) {
         setData(res.data)
-      } catch (err) {
-        console.error(err)
-        setError('Failed to load tasks. Please try again.')
-      } finally {
-        setLoading(false)
+      } else {
+        setData([])
+        console.warn("Tasks API did not return an array:", res.data)
       }
+    } catch (err) {
+      console.error(err)
+      setError('Failed to load tasks. Please try again.')
+      setData([]) // fallback
+    } finally {
+      setLoading(false)
     }
-    fetchTasks()
-  }, [token, navigate])
+  }
+  fetchTasks()
+}, [token, navigate])
+
 
   const deleteTask = async (taskId) => {
     if (!window.confirm("Are you sure you want to delete this task?")) return
@@ -62,18 +66,19 @@ const Tasks = () => {
   }
 
   // Filter tasks
-  const filteredTasks = data.filter(task => {
-    if (filter === 'completed') return task.completed
-    if (filter === 'pending') return !task.completed
-    return true
-  })
+  const filteredTasks = Array.isArray(data) ? data.filter(task => {
+  if (filter === 'completed') return task.completed
+  if (filter === 'pending') return !task.completed
+  return true
+}) : []
 
   // Calculate stats
   const stats = {
-    total: data.length,
-    completed: data.filter(t => t.completed).length,
-    pending: data.filter(t => !t.completed).length
-  }
+  total: Array.isArray(data) ? data.length : 0,
+  completed: Array.isArray(data) ? data.filter(t => t.completed).length : 0,
+  pending: Array.isArray(data) ? data.filter(t => !t.completed).length : 0
+}
+
 
   // Format date
   const formatDate = (dateString) => {
