@@ -5,17 +5,17 @@ export const getTask=async(req,res)=>{
         
     //  
     
-    res.json("hello")
-    // const {status,priority}=req.query;
+    // res.json("hello")
+    const {status,priority}=req.query;
        
-    //    const filter={user:req.user.id}
+       const filter={user:req.user.id}
 
-    //     if (status) filter.status = status;
-    // if (priority) filter.priority = priority;
+        if (status) filter.status = status;
+    if (priority) filter.priority = priority;
 
-    // const tasks=await Task.find({userId:req.user.id})
+    const tasks=await Task.find({userId:req.user.id})
 
-    // res.json(tasks)
+    res.json(tasks)
     } catch (error) {
         res.status(501).json({msg:error.message})
     }
