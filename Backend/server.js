@@ -7,7 +7,7 @@ import NoteRoutes from './Routes/Notes.Route.js'
 import BookMarkRoutes from './Routes/BookMark.Route.js'
 import FinanceRoutes from './Routes/Finance.Route.js'
 import cors from 'cors'
-import mongoose from 'mongoose'
+
 
 
 
@@ -47,7 +47,11 @@ app.use('/api/finance',FinanceRoutes)
 //   }
 // });
 
+app.get('/',(req,res)=>{
+  res.send("hello")
+})
 
-app.listen(port,'0.0.0.0',()=>{
+
+app.listen(port,()=>{
     console.log(`http://localhost:${port}`)
 })
