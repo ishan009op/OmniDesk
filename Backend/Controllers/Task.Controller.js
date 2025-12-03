@@ -5,7 +5,7 @@ export const getTask=async(req,res)=>{
         
     //  
     
-    // res.json("hello")
+    // res.json("hello"
     const {status,priority}=req.query;
        
        const filter={user:req.user.id}
