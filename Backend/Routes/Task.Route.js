@@ -4,7 +4,7 @@ import { CompleteTask, DeleteTask, EditTask, getSingleTask, getTask, PostTask } 
 
 const router =express.Router()
 
-router.get("/",getTask)
+router.get("/",authmiddleware,getTask)
 router.post('/',authmiddleware,PostTask)
 router.put("/:id",authmiddleware,EditTask)
 router.delete("/:id",authmiddleware,DeleteTask)
