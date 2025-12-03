@@ -12,7 +12,7 @@ const Header = () => {
       </div>
       <div className="right flex items-center pr-32 gap-10">
 <NavLink to='/' className='text-2xl font-semibold'>Home</NavLink>
-<NavLink onClick={()=>{navigate('/task')}} className='text-2xl font-semibold'>Tasks</NavLink>
+<NavLink to='/task' className='text-2xl font-semibold'>Tasks</NavLink>
 <NavLink to='/notes' className='text-2xl font-semibold'>Notes</NavLink>
 <NavLink to='/bookmark' className='text-2xl font-semibold'>Bookmarks</NavLink>
 <NavLink to='/finance' className='text-2xl font-semibold'>Finance</NavLink>
