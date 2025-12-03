@@ -16,7 +16,7 @@ import cors from 'cors'
 connectDatabase()
 dotenv.config()
 const corsOptions = {
-  origin: 'https://omnidesk-frontend.onrender.com', // Allow only this origin
+  origin: '*', // Allow only this origin
   methods: ['GET', 'POST','PUT','PATCH','DELETE'], // Allow only GET and POST requests
   allowedHeaders: ['Content-Type', 'Authorization'], // Allow specific headers
   credentials: true // Allow sending cookies/credentials
