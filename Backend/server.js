@@ -47,9 +47,9 @@ app.use('/api/finance',FinanceRoutes)
 //   }
 // });
 
-app.get('/',(req,res)=>{
-  res.send("hello")
-})
+// app.get('/',(req,res)=>{
+//   res.send("hello")
+// })
 
 
 app.listen(port,()=>{
