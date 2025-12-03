@@ -11,52 +11,63 @@ const Tasks = () => {
   const token = localStorage.getItem('omniToken')
 
   useEffect(() => {
-  const fetchTasks = async () => {
-    try {
-      setLoading(true)
-      const res = await axios.get('https://omnidesk-backend.onrender.com/api/tasks')
-      // Ensure res.data is an array
-      if (Array.isArray(res.data)) {
-        setData(res.data)
-      } else {
-        setData([])
-        console.warn("Tasks API did not return an array:", res.data)
+    const fetchTasks = async () => {
+      try {
+        setLoading(true)
+        const res = await axios.get('https://omnidesk-backend.onrender.com/api/tasks', {
+          headers: { Authorization: `Bearer ${token}` }
+        })
+        
+        // CRITICAL FIX: Handle different response structures
+        let tasks = []
+        if (Array.isArray(res.data)) {
+          tasks = res.data
+        } else if (res.data && Array.isArray(res.data.tasks)) {
+          tasks = res.data.tasks
+        } else if (res.data && Array.isArray(res.data.data)) {
+          tasks = res.data.data
+        } else {
+          console.warn("Unexpected API response structure:", res.data)
+          tasks = []
+        }
+        
+        setData(tasks)
+        setError(null)
+      } catch (err) {
+        console.error('Fetch error:', err)
+        setError('Failed to load tasks. Please try again.')
+        setData([]) // Ensure it's always an array
+      } finally {
+        setLoading(false)
       }
-    } catch (err) {
-      console.error(err)
-      setError('Failed to load tasks. Please try again.')
-      setData([]) // fallback
-    } finally {
-      setLoading(false)
     }
-  }
-  fetchTasks()
-}, [token, navigate])
-
+    fetchTasks()
+  }, [token])
 
   const deleteTask = async (taskId) => {
     if (!window.confirm("Are you sure you want to delete this task?")) return
 
     try {
-      await axios.delete(`http://localhost:3000/api/tasks/${taskId}`, {
+      // FIX: Use the correct backend URL
+      await axios.delete(`https://omnidesk-backend.onrender.com/api/tasks/${taskId}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
-      setData(data.filter(task => task._id !== taskId))
+      setData(prevData => prevData.filter(task => task._id !== taskId))
     } catch (err) {
       console.error(err)
       alert('Failed to delete task')
     }
   }
 
-  // Toggle task completion
   const toggleComplete = async (taskId, currentStatus) => {
     try {
+      // FIX: Use the correct backend URL
       await axios.patch(
-        `http://localhost:3000/api/tasks/${taskId}`,
+        `https://omnidesk-backend.onrender.com/api/tasks/${taskId}`,
         { completed: !currentStatus },
         { headers: { Authorization: `Bearer ${token}` } }
       )
-      setData(data.map(task => 
+      setData(prevData => prevData.map(task => 
         task._id === taskId ? { ...task, completed: !currentStatus } : task
       ))
     } catch (err) {
@@ -65,20 +76,19 @@ const Tasks = () => {
     }
   }
 
-  // Filter tasks
+  // Filter tasks - with safety check
   const filteredTasks = Array.isArray(data) ? data.filter(task => {
-  if (filter === 'completed') return task.completed
-  if (filter === 'pending') return !task.completed
-  return true
-}) : []
+    if (filter === 'completed') return task.completed
+    if (filter === 'pending') return !task.completed
+    return true
+  }) : []
 
-  // Calculate stats
+  // Calculate stats - with safety checks
   const stats = {
-  total: Array.isArray(data) ? data.length : 0,
-  completed: Array.isArray(data) ? data.filter(t => t.completed).length : 0,
-  pending: Array.isArray(data) ? data.filter(t => !t.completed).length : 0
-}
-
+    total: Array.isArray(data) ? data.length : 0,
+    completed: Array.isArray(data) ? data.filter(t => t.completed).length : 0,
+    pending: Array.isArray(data) ? data.filter(t => !t.completed).length : 0
+  }
 
   // Format date
   const formatDate = (dateString) => {
@@ -107,7 +117,15 @@ const Tasks = () => {
   if (error) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
-        <div className="text-red-500 text-lg">{error}</div>
+        <div className="text-center">
+          <div className="text-red-500 text-lg mb-4">{error}</div>
+          <button
+            onClick={() => window.location.reload()}
+            className="bg-[#3B82F6] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#2563EB] transition-colors"
+          >
+            Retry
+          </button>
+        </div>
       </div>
     )
   }
