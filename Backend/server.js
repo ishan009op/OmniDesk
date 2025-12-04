@@ -33,16 +33,14 @@ app.use('/api/notes', NoteRoutes)
 app.use('/api/bookmark', BookMarkRoutes)
 app.use('/api/finance', FinanceRoutes)
 
-// Serve static files from React build
-app.use(express.static(path.join(__dirname, 'dist')))
+// Serve static files from React build (go up one level, then into Frontend/dist)
+app.use(express.static(path.join(__dirname, '../Frontend/dist')))
 
-// Handle React routing - THIS MUST BE LAST (catch-all for frontend routes)
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist', 'index.html'))
+// Handle React routing - THIS MUST BE LAST
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../Frontend/dist/index.html'))
 })
 
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`)
 })
-
-
