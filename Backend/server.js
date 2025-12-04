@@ -7,11 +7,9 @@ import NoteRoutes from './Routes/Notes.Route.js'
 import BookMarkRoutes from './Routes/BookMark.Route.js'
 import FinanceRoutes from './Routes/Finance.Route.js'
 import cors from 'cors'
-import path from 'path'
-import { fileURLToPath } from 'url';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+
+
 
 // Load environment variables FIRST
 dotenv.config()
@@ -33,18 +31,7 @@ app.use('/api/notes', NoteRoutes)
 app.use('/api/bookmark', BookMarkRoutes)
 app.use('/api/finance', FinanceRoutes)
 
-// Serve static files from React build
-app.use(express.static(path.join(__dirname, '../Frontend/dist')))
 
-// Handle React routing - catch all non-API routes
-app.use((req, res, next) => {
-  // If the request doesn't start with /api, serve index.html
-  if (!req.path.startsWith('/api')) {
-    res.sendFile(path.join(__dirname, '../Frontend/dist/index.html'))
-  } else {
-    next()
-  }
-})
 
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`)
