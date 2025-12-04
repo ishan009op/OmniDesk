@@ -19,7 +19,7 @@ const BookMark = () => {
   };
 
   useEffect(() => {
-    if (!token) return navigate("/register");
+   
 
     const getData = async () => {
       try {

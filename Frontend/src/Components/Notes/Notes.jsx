@@ -11,7 +11,7 @@ const Notes = () => {
   const token = localStorage.getItem('omniToken')
 
   useEffect(() => {
-    if (!token) return navigate('/register')
+    
 
     const fetchNotes = async () => {
       try {

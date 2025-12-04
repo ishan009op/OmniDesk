@@ -11,7 +11,7 @@ const Finance = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!token) return navigate("/login");
+   
 
     const fetchFinance = async () => {
       try {
