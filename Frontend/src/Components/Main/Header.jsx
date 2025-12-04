@@ -11,7 +11,7 @@ const Header = () => {
         <img src={logo} alt="error" className='h-40 w-40' />
       </div>
       <div className="right flex items-center pr-32 gap-10">
-<NavLink to='/' className='text-2xl font-semibold'>Home</NavLink>
+<NavLink to='/home' className='text-2xl font-semibold'>Home</NavLink>
 <NavLink to='/task' className='text-2xl font-semibold'>Tasks</NavLink>
 <NavLink to='/notes' className='text-2xl font-semibold'>Notes</NavLink>
 <NavLink to='/bookmark' className='text-2xl font-semibold'>Bookmarks</NavLink>
