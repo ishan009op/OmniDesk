@@ -37,7 +37,7 @@ const Login = () => {
       localStorage.setItem('omniUser', JSON.stringify(res.data.user))
 
       // Redirect to dashboard or home
-      navigate('/tasks') // or wherever you want to redirect after login
+      navigate('/home') // or wherever you want to redirect after login
     } catch (err) {
       console.error(err)
       setError(
