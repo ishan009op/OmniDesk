@@ -15,7 +15,7 @@ const EditNotes = () => {
 
   useEffect(() => {
     const fetchNote = async () => {
-      const res = await axios.get(`http://localhost:3000/api/notes/${id}`, {
+      const res = await axios.get(`https://omnidesk-backend.onrender.com/api/notes/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setForm({
@@ -30,7 +30,7 @@ const EditNotes = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const res = await axios.patch(
-      `http://localhost:3000/api/notes/${id}`,
+      `https://omnidesk-backend.onrender.com/api/notes/${id}`,
       {
         title: form.title,
         desc: form.desc,

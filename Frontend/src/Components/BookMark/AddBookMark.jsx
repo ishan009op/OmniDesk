@@ -54,7 +54,7 @@ const AddBookMark = () => {
     try {
       setLoading(true);
       const res = await axios.post(
-        "http://localhost:3000/api/bookmark",
+        "https://omnidesk-backend.onrender.com/api/bookmark",
         {
           title: title.trim(),
           url: url.trim(),

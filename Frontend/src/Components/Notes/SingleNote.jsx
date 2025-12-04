@@ -11,7 +11,7 @@ const navigate=useNavigate()
   useEffect(() => {
     const fetchNote = async () => {
       try {
-        const res = await axios.get(`http://localhost:3000/api/notes/${id}`, {
+        const res = await axios.get(`https://omnidesk-backend.onrender.com/api/notes/${id}`, {
           headers: { Authorization: `Bearer ${token}` }
         })
         setNote(res.data)
@@ -31,7 +31,7 @@ const navigate=useNavigate()
 const confirm = window.confirm("Are you sure you want to delete!")
     if (!confirm) return;
 
-    const res = await axios.delete(`http://localhost:3000/api/notes/${id}`, {
+    const res = await axios.delete(`https://omnidesk-backend.onrender.com/api/notes/${id}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
 console.log(res.data)
@@ -46,7 +46,7 @@ navigate('/notes')
   const togglePinned = async () => {
     try {
       const res = await axios.patch(
-        `http://localhost:3000/api/notes/${id}`,
+        `https://omnidesk-backend.onrender.com/api/notes/${id}`,
         { pinned: !note.pinned },
         { headers: { Authorization: `Bearer ${token}` } }
       )

@@ -24,7 +24,7 @@ const AddNotes = () => {
 }
 
 
-    const res = await axios.post('http://localhost:3000/api/notes', newNote, {
+    const res = await axios.post('https://omnidesk-backend.onrender.com/api/notes', newNote, {
       headers: { Authorization: `Bearer ${token}` }
     })
 

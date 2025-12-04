@@ -16,7 +16,7 @@ const Finance = () => {
     const fetchFinance = async () => {
       try {
         setLoading(true);
-        const res = await axios.get("http://localhost:3000/api/finance", {
+        const res = await axios.get("https://omnidesk-backend.onrender.com/api/finance", {
           headers: {
             authorization: `Bearer ${token}`,
           },
@@ -38,7 +38,7 @@ const Finance = () => {
     if (!window.confirm("Are you sure you want to delete this record?")) return;
     
     try {
-      await axios.delete(`http://localhost:3000/api/finance/${id}`, {
+      await axios.delete(`https://omnidesk-backend.onrender.com/api/finance/${id}`, {
         headers: { authorization: `Bearer ${token}` },
       });
       setData(data.filter(item => item._id !== id));

@@ -17,7 +17,7 @@ const EditTask = () => {
 
     const fetchTask = async () => {
       try {
-        const res = await axios.get(`http://localhost:3000/api/tasks/${id}`, {
+        const res = await axios.get(`https://omnidesk-backend.onrender.com/api/tasks/${id}`, {
           headers: { Authorization: `Bearer ${token}` }
         })
         const task = res.data
@@ -40,7 +40,7 @@ const EditTask = () => {
 
     try {
       const updatedTask = { title: Title, desc: Desc, status: Status, priority: Priority }
-      const res = await axios.put(`http://localhost:3000/api/tasks/${id}`, updatedTask, {
+      const res = await axios.put(`https://omnidesk-backend.onrender.com/api/tasks/${id}`, updatedTask, {
         headers: { Authorization: `Bearer ${token}` }
       })
       console.log('Updated Task:', res.data)

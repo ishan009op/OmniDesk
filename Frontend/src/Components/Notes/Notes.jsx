@@ -16,7 +16,7 @@ const Notes = () => {
     const fetchNotes = async () => {
       try {
         setLoading(true)
-        const res = await axios.get('http://localhost:3000/api/notes', {
+        const res = await axios.get('https://omnidesk-backend.onrender.com/api/notes', {
           headers: { Authorization: `Bearer ${token}` }
         })
         setNotes(res.data)
@@ -37,7 +37,7 @@ const Notes = () => {
     if (!window.confirm('Are you sure you want to delete this note?')) return
     
     try {
-      await axios.delete(`http://localhost:3000/api/notes/${id}`, {
+      await axios.delete(`https://omnidesk-backend.onrender.com/api/notes/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       setNotes(notes.filter(note => note._id !== id))

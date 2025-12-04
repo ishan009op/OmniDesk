@@ -39,7 +39,7 @@ const EditBookMark = () => {
     const fetchBookmark = async () => {
       try {
         setFetchLoading(true);
-        const res = await axios.get(`http://localhost:3000/api/bookmark/${id}`, {
+        const res = await axios.get(`https://omnidesk-backend.onrender.com/api/bookmark/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -87,7 +87,7 @@ const EditBookMark = () => {
     try {
       setLoading(true);
       const res = await axios.put(
-        `http://localhost:3000/api/bookmark/${id}`,
+        `https://omnidesk-backend.onrender.com/api/bookmark/${id}`,
         {
           title: title.trim(),
           url: url.trim(),
@@ -310,7 +310,7 @@ const EditBookMark = () => {
               type="button"
               onClick={() => {
                 if (window.confirm("Are you sure you want to delete this bookmark?")) {
-                  axios.delete(`http://localhost:3000/api/bookmark/${id}`, {
+                  axios.delete(`https://omnidesk-backend.onrender.com/api/bookmark/${id}`, {
                     headers: { Authorization: `Bearer ${token}` }
                   })
                   .then(() => navigate("/bookmarks"))

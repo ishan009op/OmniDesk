@@ -24,7 +24,7 @@ const EditFinance = () => {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:3000/api/finance/${id}`,
+          `https://omnidesk-backend.onrender.com/api/finance/${id}`,
           {
             headers: {
               authorization: `Bearer ${token}`,
@@ -50,7 +50,7 @@ const EditFinance = () => {
 
     try {
       await axios.put(
-        `http://localhost:3000/api/finance/${id}`,
+        `https://omnidesk-backend.onrender.com/api/finance/${id}`,
         { title, amount, type, category },
         {
           headers: {

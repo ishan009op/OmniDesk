@@ -14,7 +14,7 @@ const SingleFinance = () => {
 
       try {
         const res = await axios.get(
-          `http://localhost:3000/api/finance/${id}`,
+          `https://omnidesk-backend.onrender.com/api/finance/${id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`

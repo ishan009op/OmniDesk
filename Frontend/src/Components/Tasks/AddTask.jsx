@@ -15,7 +15,7 @@ const AddTask = () => {
 
     try {
       const newTask = { title: Title, desc: Desc, status: Status, priority: Priority }
-      const res = await axios.post('http://localhost:3000/api/tasks', newTask, {
+      const res = await axios.post('https://omnidesk-backend.onrender.com/api/tasks', newTask, {
         headers: { Authorization: `Bearer ${token}` }
       })
       console.log('New Task:', res.data)

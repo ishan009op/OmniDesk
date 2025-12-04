@@ -23,7 +23,7 @@ const AddFinance = () => {
 
     try {
       await axios.post(
-        "http://localhost:3000/api/finance",
+        "https://omnidesk-backend.onrender.com/api/finance",
         { title, amount, type, category },
         {
           headers: {

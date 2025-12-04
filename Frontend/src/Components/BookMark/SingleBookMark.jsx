@@ -16,7 +16,7 @@ const SingleBookMark = () => {
 
       try {
         setLoading(true)
-        const res = await axios.get(`http://localhost:3000/api/bookmark/${id}`, {
+        const res = await axios.get(`https://omnidesk-backend.onrender.com/api/bookmark/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -39,7 +39,7 @@ const SingleBookMark = () => {
     if (!window.confirm('Are you sure you want to delete this bookmark?')) return
 
     try {
-      await axios.delete(`http://localhost:3000/api/bookmark/${id}`, {
+      await axios.delete(`https://omnidesk-backend.onrender.com/api/bookmark/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       navigate('/bookmarks')
