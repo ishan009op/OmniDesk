@@ -7,7 +7,7 @@ import NoteRoutes from './Routes/Notes.Route.js'
 import BookMarkRoutes from './Routes/BookMark.Route.js'
 import FinanceRoutes from './Routes/Finance.Route.js'
 import cors from 'cors'
-
+import path from 'path'
 
 
 
@@ -23,6 +23,14 @@ dotenv.config()
 // };
 const app=express()
 const port=process.env.PORT
+
+
+app.use(express.static(path.join(__dirname, 'dist')));
+
+// Handle React routing - THIS MUST BE LAST
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
 
 app.use(cors())
 app.use(express.json())
