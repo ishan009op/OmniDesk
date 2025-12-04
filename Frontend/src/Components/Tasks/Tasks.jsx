@@ -340,12 +340,12 @@ const Tasks = () => {
 
                   {/* Action Buttons */}
                   <div className="flex gap-2">
-                    <button
+                    {/* <button
                       onClick={() => navigate(`/singletask/${task._id}`)}
                       className="px-4 py-1.5 bg-[#2C3E50] text-white rounded text-sm font-medium hover:bg-[#1e293b] transition-colors"
                     >
                       View
-                    </button>
+                    </button> */}
                     <button
                       onClick={() => navigate(`/edittask/${task._id}`)}
                       className="px-4 py-1.5 bg-[#3B82F6] text-white rounded text-sm font-medium hover:bg-[#2563EB] transition-colors"
