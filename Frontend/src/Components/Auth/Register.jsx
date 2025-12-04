@@ -55,7 +55,7 @@ const Register = () => {
       if (res.data.token) {
         localStorage.setItem('omniToken', res.data.token)
         localStorage.setItem('omniUser', JSON.stringify(res.data.user))
-        navigate('/task')
+        navigate('/home')
       } else {
         // Or redirect to login
         navigate('/login')
