@@ -128,7 +128,7 @@ const EditBookMark = () => {
       <div className="mb-8">
         <div className="flex items-center gap-3 mb-2">
           <button
-            onClick={() => navigate("/bookmark")}
+            onClick={() => navigate("/bookmarks")}
             className="text-[#64748B] hover:text-[#2C3E50] transition-colors"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

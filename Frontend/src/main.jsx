@@ -79,7 +79,7 @@ const router=createBrowserRouter([{
     element:<EditNotes/>
   },
   {
-    path:"/bookmark",
+    path:"/bookmarks",
     element:<BookMark/>
   },
   {
